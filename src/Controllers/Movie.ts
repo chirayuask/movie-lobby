@@ -50,16 +50,16 @@ export const updateMovie = async (req: Request, res: Response) => {
         let { title, genre, rating, streamingLink } = req.body;
         let updateBody: any = {};
 
-        if (title) updateBody[title] = title;
-        if (genre) updateBody[genre] = genre;
-        if (rating) updateBody[rating] = rating;
-        if (streamingLink) updateBody[streamingLink] = streamingLink;
+        if (title) updateBody['title'] = title;
+        if (genre) updateBody['genre'] = genre;
+        if (rating) updateBody['rating'] = rating;
+        if (streamingLink) updateBody['streamingLink'] = streamingLink;
 
         let check = await movieLists.findById(id);
         console.log('check', check)
         if (!check) return res.status(202).send({ status: 202, message: `No result found with ${id}`, data: check });
 
-        let update = await movieLists.updateOne({ _id: id }, { $set: updateBody });
+        let update = await movieLists.findOneAndUpdate({ _id: id }, updateBody, { new: true });
 
         return res.status(200).send({ status: 200, message: update });
 

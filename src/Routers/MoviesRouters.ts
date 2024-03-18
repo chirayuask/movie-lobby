@@ -5,11 +5,15 @@ import { createMovie, deleteMovie, findAll, searchMovie, updateMovie } from '../
 
 const routes = Router();
 
+routes.route('/movies/:id')
+    .put(MovieRules.updateMovie, checkValidationResults, validateAdminRequests, updateMovie)
+    .delete(MovieRules.updateMovie, checkValidationResults, validateAdminRequests, deleteMovie)
 
-routes.post('/movies', MovieRules.createMovie, checkValidationResults, validateAdminRequests, createMovie);
-routes.get('/search', MovieRules.searchMovie, checkValidationResults,  searchMovie);
-routes.get('/movies', findAll);
-routes.put('/movies/:id', MovieRules.updateMovie, checkValidationResults, validateAdminRequests, updateMovie);
-routes.delete('/movies/:id', MovieRules.updateMovie, checkValidationResults, validateAdminRequests, deleteMovie)
+routes.route('/movies')
+    .post(MovieRules.createMovie, checkValidationResults, validateAdminRequests, createMovie)
+    .get(findAll)
+
+
+routes.get('/search', MovieRules.searchMovie, checkValidationResults, searchMovie);
 
 export default routes
