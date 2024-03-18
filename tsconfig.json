@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "strict": true,
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": true,
+        "target": "ES2017",
+        "module": "esnext",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "allowUnreachableCode": true,
+        "noFallthroughCasesInSwitch": true,
+        "outDir": "dist",
+        "declaration": true,
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "allowJs": false,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
