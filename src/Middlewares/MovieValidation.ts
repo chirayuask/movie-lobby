@@ -1,4 +1,4 @@
-import { body, header } from 'express-validator'
+import { body, header, param, query } from 'express-validator'
 import { Response, NextFunction } from 'express'
 import { ExtendedExpressRequest } from '../Typings/movieModals'
 import { tokenValidation } from '../Models/Users'
@@ -9,6 +9,12 @@ export const MovieRules = {
         body('rating').notEmpty({ ignore_whitespace: true }).withMessage('rating is required'),
         body('streamingLink').notEmpty({ ignore_whitespace: true }).withMessage('streamingLink is required'),
         header('authorization').notEmpty({ ignore_whitespace: true }).withMessage('token is required')
+    ],
+    updateMovie: [
+        param('id').isMongoId().withMessage('id is not valid')
+    ],
+    searchMovie: [
+        query('q').notEmpty({ ignore_whitespace: true }).withMessage('q (search-string) is required')
     ]
 };
 
