@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { secretKeys } from '../Config/env';
 import { userModalSchema, userValidationPromise } from '../Typings/userModal';
+import { SecurityService } from '../Helpers/crypto';
 
 class UserModals {
     private userName: string;
@@ -86,7 +87,8 @@ class UserModals {
 export class tokenValidation {
     private token: string
     constructor(token: string) {
-        this.token = token
+        const ss = new SecurityService(token);
+        this.token = ss.get();
     }
     async validateToken() {
         return new Promise<userValidationPromise>(async (resolve, reject) => {
