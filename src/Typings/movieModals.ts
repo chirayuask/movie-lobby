@@ -14,4 +14,3 @@ export interface ExtendedExpressRequest extends Request {
     }
     users?: userModalSchema
 }
-

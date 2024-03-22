@@ -1,3 +1,4 @@
+import { getAllMovies, getSearchMovies } from '../Redis/Movies';
 import movieLists from '../Schema/movieLists';
 import { ExtendedExpressRequest } from '../Typings/movieModals';
 import { Response, Request } from 'express';
@@ -23,14 +24,9 @@ export const createMovie = async (req: ExtendedExpressRequest, res: Response) =>
 
 export const searchMovie = async (req: Request, res: Response) => {
     try {
-        let { q } = req.query;
+        let { q = "" } = req.query;
 
-        let data = await movieLists.find({
-            $or: [
-                { title: { $regex: q, $options: 'i' } },
-                { genre: { $regex: q, $options: 'i' } }
-            ]
-        })
+        let data = await getSearchMovies(q);
 
         return res.status(200).send({ status: 200, message: data });
 
@@ -94,7 +90,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
 
 export const findAll = async (_req: Request, res: Response) => {
     try {
-        let data = await movieLists.find();
+        let data = await getAllMovies()
         return res.status(200).send({ status: 200, message: data });
 
     } catch (error) {

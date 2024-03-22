@@ -14,5 +14,9 @@ export const secretKeys = {
     MONGO_PORT: process.env.MONGO_PORT || 27017 as number,
     MONGO_DATABASE_NAME: process.env.MONGO_DATABASE_NAME || 'movie-lobby' as string,
     JWT_KEY: process.env.JWT_KEY as string,
-    JWT_EXPIRES_IN: '4h' as string
+    JWT_EXPIRES_IN: '4h' as string,
+    REDIS_HOST: process.env.REDIS_HOST as string,
+    REDIS_PORT: process.env.REDIS_PORT as string,
+    REDIS_TTL: process.env.REDIS_TTL as string,
+    REDIS_PREFIX: process.env.REDIS_PREFIX as string,
 };
